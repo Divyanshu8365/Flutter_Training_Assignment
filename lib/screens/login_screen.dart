@@ -99,7 +99,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               if (value == null || value.isEmpty) {
                                 return "Email is required";
                               }
-                              if (!value.contains("@")) {
+                              final emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+                              if (!emailRegExp.hasMatch(value)) {
                                 return "Enter a valid email.";
                               }
                               return null;
