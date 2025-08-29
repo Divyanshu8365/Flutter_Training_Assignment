@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/helpers/validators.dart';
 import 'package:provider/provider.dart';
 import '../providers/auth_provider.dart';
 import '../widgets/custom_alert.dart';
@@ -95,16 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   Icons.email,
                                   color: Colors.white,
                                 )),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return "Email is required";
-                              }
-                              final emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-                              if (!emailRegExp.hasMatch(value)) {
-                                return "Enter a valid email.";
-                              }
-                              return null;
-                            },
+                            validator: Validators.validateEmail,
                           ),
                           const SizedBox(
                             height: 20,
@@ -157,15 +149,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     color: Colors.white,
                                   ),
                                 )),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return "Password is required";
-                              }
-                              if (value.length < 6) {
-                                return "Password must be at least 6 characters long.";
-                              }
-                              return null;
-                            },
+                            validator: Validators.validatePassword,
                           ),
                           const SizedBox(height: 20),
                           Row(
